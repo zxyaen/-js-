@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <p>
+        给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+
+        有效字符串需满足：
+
+        左括号必须用相同类型的右括号闭合。
+        左括号必须以正确的顺序闭合。
+
+    </p>
+    <script>
+        //解1:
+        //将括号按对替换为空字符串
+        // let s = "(([]))"
+        // function fun(s) {
+        //     for (let i = 0; i < s.length+1; i++) {
+        //         s = s.replace('()', '').replace('{}', '').replace('[]', '')
+        //         console.log(s);
+        //     }
+        //     return s === ''
+        // }
+        // console.log(fun(s));
+        // fun(s)
+
+
+        //解2:
+        //利用栈
+        let s = '{{(){}}}'
+        function isValid(s) {
+            if (s.length % 2 !== 0) return false
+            const map = new Map([
+                ['(', ')'],
+                ['{', '}'],
+                ['[', ']']
+            ])
+            let stack = []
+
+            for (let c of s) {
+                //若是左括号，入栈
+                if (map.has(c)) {
+                    stack.push(c)
+                    continue
+                }
+                //若是右括号，弹出栈顶左括号map右括号，比较两个右括号是否相同，不相同返回false
+                if (c !== map.get(stack.pop())) return false
+            }
+            return !stack.length
+        }
+
+        console.log(isValid(s));
+    </script>
+</body>
+
+</html>

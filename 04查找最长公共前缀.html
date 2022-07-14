@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <p>
+        编写一个函数来查找字符串数组中的最长公共前缀。
+
+        如果不存在公共前缀，返回空字符串 ""。
+    </p>
+
+    <script>
+        //解1:逐个比较第2个往后的字符串与第一个字符串的每一位数
+        let str = ["flower", "flow", "flight"]
+        function longCommonStr(str) {
+            let res =str[0]
+            //循环遍历数组中每一个字符串
+            for(let i=1;i<res.length;i++){
+                //i=1 当str[1].slice(0,str[0].length)切出来长度等于str[0]的字符与str[0]不相等
+                // true   res减去一个末尾字符再次比对，直到字符相等
+                // false  推出循环进入 i=2
+                while(res!==str[i].slice(0,res.length)){
+                    res=res.slice(0,res.length-1)
+                }
+            }
+            return res
+
+        }
+
+        console.log(longCommonStr(str));
+    </script>
+</body>
+
+</html>
