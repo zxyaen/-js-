@@ -60,7 +60,7 @@
                     stack.push(c)
                     continue
                 }
-                //若是右括号，弹出栈顶左括号map右括号，比较两个右括号是否相同，不相同返回false
+                //若是右括号，弹出栈顶左括号map右括号，比较两个右括号是否相同，不相同返回false 去啊我生生世世撒世代相传
                 if (c !== map.get(stack.pop())) return false
             }
             return !stack.length
